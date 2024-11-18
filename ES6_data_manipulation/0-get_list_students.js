@@ -1,8 +1,8 @@
-function getListStudents(id, firstName, location) {
+export default function getListStudents() {
     // This function will return an array of objects
-    id = ['1', '2', '3'];
-    firstName = ['Guillaume', 'James', 'Serena'];
-    location = ['San Francisco', 'Columbia', 'San Francisco'];
-    const studentlist = [id, firstName, location]
-    return studentlist
+    return [
+        "{ id: 1, firstName: 'Guillaume', location: 'San Francisco' },",
+        "{ id: 2, firstName: 'James', location: 'Columbia' },",
+  "{ id: 5, firstName: 'Serena', location: 'San Francisco' }"
+    ]
 }
