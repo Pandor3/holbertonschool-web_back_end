@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 # This module will create a function named add
 # it will return the sum of two variables
 
