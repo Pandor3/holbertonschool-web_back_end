@@ -7,7 +7,7 @@ return what it will be used for
 import math
 
 
-def floor(n: float) -> float:
+def floor(n: float) -> int:
     """
     This function will return an n float as a boat floor
     """
