@@ -5,11 +5,11 @@ collect 10 random numbers and then return them
 """
 
 import asyncio
-import random
+from typing import List
 async_generator = __import__('0-async_generator').async_generator
 
 
-async def async_comprehension():
+async def async_comprehension() -> List[float]:
     """
     This function will collect 10 random numbers and then return them
     """
