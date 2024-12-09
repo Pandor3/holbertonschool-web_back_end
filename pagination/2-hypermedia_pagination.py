@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-This module will contain a function which will
+This module will contain a function which will return a dictionnary
+with a pagination dataset
 """
 
 
