@@ -1,0 +1,5 @@
+// This comment will come later
+
+db.school.deleteMany(
+    {"name" : "Holberton school"}
+);
