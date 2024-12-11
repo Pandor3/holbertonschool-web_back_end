@@ -21,24 +21,24 @@ def function():
     - it counts the number of status checks
     (GET requests via the path "/status")
     """
+    try:
+        client = MongoClient('mongodb://localhost:27017/')
+        client.server_info()
+        db = client["logs"]
+        collection = db["nginx"]
+        if collection is not None:
+            total_logs = collection.count_documents({})
+            print(f"{total_logs} logs")
+            print("Methods:")
+            for method in ["GET", "POST", "PUT", "PATCH", "DELETE"]:
+                count = collection.count_documents({"method": method})
+                print(f"\tmethod {method}: {count}")
 
-    client = MongoClient('mongodb://localhost:27017/')
-    client.server_info()
-    db = client["logs"]
-    collection = db["nginx"]
-    if collection is not None:
-        total_logs = collection.count_documents({})
-        print(f"{total_logs} logs")
-        print("Methods:")
-        for method in ["GET", "POST", "PUT", "PATCH", "DELETE"]:
-            count = collection.count_documents({"method": method})
-            print(f"\tmethod {method}: {count}")
-
-        check_status = collection.count_documents(
-            {"method": "GET",
-             "path": "/status"}
-        )
-        print(f"{check_status} status check")
+            check_status = collection.count_documents(
+                {"method": "GET", "path": "/status"})
+            print(f"{check_status} status check")
+    except Exception as e:
+        print(f"Error : {e}")
 
 
 if __name__ == "__main__":
