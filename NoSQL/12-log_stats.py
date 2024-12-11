@@ -9,7 +9,7 @@ in mongoDB
 from pymongo import MongoClient
 
 
-def function():
+def count_function():
     """
     This function will provide stats about nginx logs
     which are stored in mongoDB.
@@ -42,4 +42,4 @@ def function():
 
 
 if __name__ == "__main__":
-    function()
+    count_function()
