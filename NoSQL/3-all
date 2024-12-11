@@ -1,0 +1,3 @@
+// my comment will come later
+
+db.school.find()
