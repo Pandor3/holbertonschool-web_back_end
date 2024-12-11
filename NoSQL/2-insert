@@ -1,0 +1,5 @@
+// This command will create a collection named "school" and add it a document named "name"
+
+db.school.insertOne({
+    name: "Holberton School"
+});
