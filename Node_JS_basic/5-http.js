@@ -79,8 +79,9 @@ const app = http.createServer(async (req, res) => {
 });
 
 // Ceci montre que le serveur écoutera sur le port 1245
-app.listen(1245, () => {
-  console.log('Server is listening on port 1245');
+const PORT = 1245;
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
 });
 
 module.exports = app;
