@@ -50,12 +50,12 @@ const app = http.createServer(async (req, res) => {
   let output = '';
 
   // Si l'utilisateur demande à accéder à la route '/'
-  if (req.url === '/') {
+  if (url === '/') {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
 
     res.end('Hello Holberton School!');
-  } else if (req.url === '/students') {
+  } else if (url === '/students') {
     // Si l'utilisateur demande à accéder à la route '/students'
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
