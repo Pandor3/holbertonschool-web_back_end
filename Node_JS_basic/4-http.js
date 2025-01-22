@@ -10,9 +10,8 @@ const app = http.createServer((req, res) => {
 });
 
 // Ceci permet d'écouter sur le port 1245 et d'avoir une confirmation via un message sur le terminal
-const PORT = 1245;
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
+app.listen(1245, () => {
+  console.log('Server is listening on port 1245');
 });
 
-module.export = app;
+module.exports = app;
