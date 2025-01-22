@@ -10,7 +10,7 @@ function countStudents(path) {
 
     // Ceci permet de vérifier si le fichier à un en-tête
     if (lines.length <= 1) {
-        throw new Error('Cannot load the database(1)')
+        throw new Error('Cannot load the database')
     }
 
     // Ceci permet de filtrer les données via l'en-tête et de les séparer dans un tableau
@@ -36,7 +36,7 @@ function countStudents(path) {
     }
   } catch (err) {
     // Ceci permet de gérer les cas d'erreurs au cas où la database n'est pas accessible
-    throw new Error('Cannot load the database(2)');
+    throw new Error('Cannot load the database');
   }
 }
 
