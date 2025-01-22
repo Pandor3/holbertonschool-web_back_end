@@ -10,7 +10,8 @@ function countStudents(path) {
 
     // Ceci permet de vérifier si le fichier à un en-tête
     if (lines.length <= 1) {
-        throw new Error('Cannot load the database')
+        console.log('Number of students: 0');
+        return;
     }
 
     // Ceci permet de filtrer les données via l'en-tête et de les séparer dans un tableau
