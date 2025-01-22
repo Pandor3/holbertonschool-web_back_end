@@ -46,8 +46,8 @@ function readDatabase(filePath) {
 
 // Création du serveur HTTP
 const app = http.createServer(async (req, res) => {
-  const databasePath = path.resolve(__dirname, 'database.csv');
-  let output = '';
+  const databasePath = path.resolve(__dirname, process.argv[2] || 'database.csv');
+  let output = 'This is the list of our students\n';
 
   // Si l'utilisateur demande à accéder à la route '/'
   if (req.url === '/') {
