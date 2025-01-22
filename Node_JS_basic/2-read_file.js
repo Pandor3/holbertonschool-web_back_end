@@ -15,14 +15,13 @@ function countStudents(path) {
     }
 
     // Ceci permet de filtrer les données via l'en-tête et de les séparer dans un tableau
-    const headers = lines[0].split(',');
     const students = lines.slice(1).map((line) => line.split(','));
     console.log(`Number of students: ${students.length}`);
 
     // Ceci permet d'organiser les étudiants par champ (fields)
     const fields = {};
     for (const student of students) {
-      const [firstname, lastname, age, field] = student.map((item) => item.trim());
+      const [firstname, , , field] = student.map((item) => item.trim());
       if (!fields[field]) {
         fields[field] = [];
       }
@@ -31,9 +30,11 @@ function countStudents(path) {
 
     // Ceci permet de log les étudiants par champs (fields)
     for (const field in fields) {
-      console.log(
-        `Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}`,
-      );
+      if (Object.prototype.hasOwnProperty.call(fields, field)) {
+        console.log(
+          `Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}`,
+        );
+      }
     }
   } catch (err) {
     // Ceci permet de gérer les cas d'erreurs au cas où la database n'est pas accessible
