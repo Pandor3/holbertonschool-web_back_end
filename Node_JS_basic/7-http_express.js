@@ -14,13 +14,12 @@ async function countStudents(path) {
 
     // Ceci permet de vérifier si le fichier à un en-tête
     if (lines.length <= 1) {
-      console.log('Number of students: 0');
-      return;
+      return 'Number of students: 0';
     }
 
     // Ceci permet de filtrer les données via l'en-tête et de les séparer dans un tableau
     const students = lines.slice(1).map((line) => line.split(','));
-    console.log(`Number of students: ${students.length}`);
+    let result = `Number of students: ${students.length}\n`;
 
     // Ceci permet d'organiser les étudiants par champ (fields)
     const fields = {};
@@ -35,11 +34,10 @@ async function countStudents(path) {
     // Ceci permet de log les étudiants par champs (fields)
     for (const field in fields) {
       if (Object.prototype.hasOwnProperty.call(fields, field)) {
-        console.log(
-          `Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}`,
-        );
+        result += `Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}`;
       }
     }
+    return result.trim();
   } catch (err) {
     // Ceci permet de gérer les cas d'erreurs au cas où la database n'est pas accessible
     throw new Error('Cannot load the database');
