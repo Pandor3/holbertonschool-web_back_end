@@ -9,5 +9,5 @@ process.stdin.on('data', (data) => {
 
 // Ceci permettra d'écouter afin de détecter la fin de l'entrée utilisateur.
 process.stdin.on('end', () => {
-  process.stdout.write('This import software is now closing\n');
+  process.stdout.write('This important software is now closing\n');
 });
