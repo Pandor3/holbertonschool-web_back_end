@@ -3,7 +3,6 @@ process.stdout.write('Welcome to Holberton School, what is your name ?\n');
 
 // Ceci va créer un écouteur pour l'entrée standard
 process.stdin.on('data', (data) => {
-  // Ceci affichera le nom que l'utilisateur écrira dans le terminal
   process.stdout.write(`Your name is: ${data}`);
 });
 
