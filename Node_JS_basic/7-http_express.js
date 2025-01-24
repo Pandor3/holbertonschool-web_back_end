@@ -1,56 +1,43 @@
 const express = require('express');
 const fs = require('fs').promises;
 
-// On définit app avec Express
 const app = express();
 
-async function countStudents(path) {
-  try {
-    // Ceci permettra de lire le fichier de manière asynchrone
-    const data = await fs.readFile(path, 'utf-8');
+function countStudents(path) {
+  return fs.readFile(path, 'utf8')
+    .then((data) => {
+      const lines = data.trim().split('\n');
+      const students = lines.slice(1).filter((line) => line.length > 0);
 
-    // Ceci permettra de diviser en lignes, ce qui rendra le tout plus lisible.
-    const lines = data.split('\n').filter((line) => line.trim() !== '');
-
-    // Ceci permet de vérifier si le fichier à un en-tête
-    if (lines.length <= 1) {
-      return 'Number of students: 0';
-    }
-
-    // Ceci permet de filtrer les données via l'en-tête et de les séparer dans un tableau
-    const students = lines.slice(1).map((line) => line.split(','));
-    let result = `Number of students: ${students.length}\n`;
-
-    // Ceci permet d'organiser les étudiants par champ (fields)
-    const fields = {};
-    for (const student of students) {
-      const [firstname, , , field] = student.map((item) => item.trim());
-      if (!fields[field]) {
-        fields[field] = [];
+      const fields = {};
+      for (const student of students) {
+        const [firstname, , , field] = student.split(',');
+        if (!fields[field]) {
+          fields[field] = {
+            count: 1,
+            students: [firstname],
+          };
+        } else {
+          fields[field].count += 1;
+          fields[field].students.push(firstname);
+        }
       }
-      fields[field].push(firstname);
-    }
 
-    // Ceci permet de log les étudiants par champs (fields)
-    for (const field in fields) {
-      if (Object.prototype.hasOwnProperty.call(fields, field)) {
-        result += `Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}`;
+      let output = `Number of students: ${students.length}\n`;
+      for (const [field, data] of Object.entries(fields)) {
+        output += `Number of students in ${field}: ${data.count}. List: ${data.students.join(', ')}\n`;
       }
-    }
-    return result.trim();
-  } catch (err) {
-    // Ceci permet de gérer les cas d'erreurs au cas où la database n'est pas accessible
-    throw new Error('Cannot load the database');
-  }
+      return output;
+    })
+    .catch(() => {
+      throw new Error('Cannot load the database');
+    });
 }
 
-// On définit la route et le message que l'on souhaite envoyer
 app.get('/', (req, res) => {
   res.send('Hello Holberton School!');
 });
 
-// On définit la route students et on attends de manière asynchrone les données envoyées
-// Par countStudents.
 app.get('/students', async (req, res) => {
   try {
     const database = process.argv[2];
@@ -61,10 +48,7 @@ app.get('/students', async (req, res) => {
   }
 });
 
-// On écoute sur le port défini (1245)
-const PORT = 1245;
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+const port = 1245;
+app.listen(port);
 
 module.exports = app;
