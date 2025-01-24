@@ -1,5 +1,5 @@
 // Ceci importe le module process pour s'occuper des entrées et sorties
-process.stdout.write('Welcome to Holberton School, what is your name ?\n');
+process.stdout.write('Welcome to Holberton School, what is your name?\n');
 
 // Ceci va créer un écouteur pour l'entrée standard
 process.stdin.on('data', (data) => {
